@@ -12,134 +12,16 @@
         <div class="row">
             <span class="cell">🟩</span>
             <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
         </div>
         <div class="row">
             <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-        </div>
-        <div class="row">
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-        </div>
-        <div class="row">
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-        </div>
-        <div class="row">
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-        </div>
-        <div class="row">
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-        </div>
-        <div class="row">
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-        </div>
-        <div class="row">
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-        </div>
-        <div class="row">
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
+            <span class="cell">👤</span>
         </div>
     </div>
     <script>
         const player = document.createElement('span');
         player.innerHTML = '👤';
-        let playerPosition = { x: 0, y: 0 }; // Posição inicial do jogador
+        let playerPosition = { x: 1, y: 1 }; // Posição inicial do jogador
 
         // Coloca o jogador na posição inicial
         const initialRow = document.querySelectorAll('.row')[playerPosition.y];
@@ -151,11 +33,11 @@
             // Verifica se a tecla pressionada é W, A, S ou D
             if (key === 'w' && playerPosition.y > 0) {
                 movePlayer(0, -1);
-            } else if (key === 's' && playerPosition.y < 9) {
+            } else if (key === 's' && playerPosition.y < 1) {
                 movePlayer(0, 1);
             } else if (key === 'a' && playerPosition.x > 0) {
                 movePlayer(-1, 0);
-            } else if (key === 'd' && playerPosition.x < 11) {
+            } else if (key === 'd' && playerPosition.x < 1) {
                 movePlayer(1, 0);
             }
         });
@@ -176,4 +58,3 @@
     </script>
 </body>
 </html>
-
