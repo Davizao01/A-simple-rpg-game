@@ -3,58 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Movimento</title>
+    <title>Jogo de Movimento com Seed</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Movimente-se pelo mapa!</h1>
-    <div id="gameContainer">
-        <div class="row">
-            <span class="cell">🟩</span>
-            <span class="cell">🟩</span>
-        </div>
-        <div class="row">
-            <span class="cell">🟩</span>
-            <span class="cell">👤</span>
-        </div>
-    </div>
+    <div id="gameContainer"></div>
+
     <script>
-        const player = document.createElement('span');
-        player.innerHTML = '👤';
-        let playerPosition = { x: 1, y: 1 }; // Posição inicial do jogador
+        const gameContainer = document.getElementById('gameContainer');
 
-        // Coloca o jogador na posição inicial
-        const initialRow = document.querySelectorAll('.row')[playerPosition.y];
-        initialRow.children[playerPosition.x].innerHTML = player.innerHTML;
+        // Definindo o mapa com passagens e bloqueios
+        const map = [
+            ['🟩', '🟩', '🟩', '🟫'],
+            ['🟩', '🟫', '🟩', '🟩'],
+            ['🟩', '🟩', '🟩', '🟫'],
+            ['🟫', '🟩', '🟩', '🟩'],
+        ];
 
-        document.addEventListener('keydown', function(event) {
-            const key = event.key;
+        const player = { x: 0, y: 0 }; // Posição inicial do jogador
 
-            // Verifica se a tecla pressionada é W, A, S ou D
-            if (key === 'w' && playerPosition.y > 0) {
-                movePlayer(0, -1);
-            } else if (key === 's' && playerPosition.y < 1) {
-                movePlayer(0, 1);
-            } else if (key === 'a' && playerPosition.x > 0) {
-                movePlayer(-1, 0);
-            } else if (key === 'd' && playerPosition.x < 1) {
-                movePlayer(1, 0);
+        // Função para renderizar o mapa
+        function renderMap() {
+            gameContainer.innerHTML = '';
+            for (let row of map) {
+                const rowDiv = document.createElement('div');
+                rowDiv.classList.add('row');
+                for (let cell of row) {
+                    const cellSpan = document.createElement('span');
+                    cellSpan.classList.add('cell');
+                    cellSpan.innerHTML = cell;
+                    rowDiv.appendChild(cellSpan);
+                }
+                gameContainer.appendChild(rowDiv);
             }
+            updatePlayerPosition();
+        }
+
+        // Função para atualizar a posição do jogador
+        function updatePlayerPosition() {
+            const currentRow = gameContainer.children[player.y];
+            currentRow.children[player.x].innerHTML = '👤';
+        }
+
+        // Função para mover o jogador
+        function movePlayer(deltaX, deltaY) {
+            const newX = player.x + deltaX;
+            const newY = player.y + deltaY;
+
+            // Verifica se a nova posição é válida (passável)
+            if (newX >= 0 && newY >= 0 && newY < map.length && newX < map[0].length && map[newY][newX] !== '🟫') {
+                // Limpa a posição anterior
+                const currentRow = gameContainer.children[player.y];
+                currentRow.children[player.x].innerHTML = map[player.y][player.x];
+
+                // Atualiza a posição do jogador
+                player.x = newX;
+                player.y = newY;
+
+                // Renderiza a nova posição do jogador
+                updatePlayerPosition();
+            }
+        }
+
+        // Evento de tecla para mover o jogador
+        document.addEventListener('keydown', function(event) {
+            const key = event.key.toLowerCase();
+            if (key === 'w') movePlayer(0, -1);
+            else if (key === 's') movePlayer(0, 1);
+            else if (key === 'a') movePlayer(-1, 0);
+            else if (key === 'd') movePlayer(1, 0);
         });
 
-        function movePlayer(deltaX, deltaY) {
-            // Limpa a posição anterior
-            const currentRow = document.querySelectorAll('.row')[playerPosition.y];
-            currentRow.children[playerPosition.x].innerHTML = '🟩';
-
-            // Atualiza a posição do jogador
-            playerPosition.x += deltaX;
-            playerPosition.y += deltaY;
-
-            // Renderiza a nova posição do jogador
-            const newRow = document.querySelectorAll('.row')[playerPosition.y];
-            newRow.children[playerPosition.x].innerHTML = player.innerHTML;
-        }
+        // Renderiza o mapa inicialmente
+        renderMap();
     </script>
 </body>
 </html>
